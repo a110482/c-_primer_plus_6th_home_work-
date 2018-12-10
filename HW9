@@ -1,0 +1,104 @@
+#Q1 ===================
+#include <stdio.h>
+double min(double x, double y);
+
+int main(int argc, const char * argv[]) {
+    
+    printf("%f\n", min(3.3, 2.2));
+    
+    return 0;
+}
+double min(double x, double y){
+    if (x > y){
+        return y;
+    }
+    return x;
+}
+
+#Q2 ====================
+#include <stdio.h>
+void large_of(double *x, double *y);
+
+int main(int argc, const char * argv[]) {
+    double x=2,y=5;
+    printf("before x: %f, y: %f\n", x, y);
+    large_of(&x, &y);
+    printf("after x: %f, y: %f\n", x, y);
+    
+    return 0;
+}
+void large_of(double *x, double *y){
+    double large_one;
+    large_one = *x;
+    if (*y > large_one){
+        large_one = *y;
+    }
+    *y = large_one;
+    *x = large_one;
+}
+
+#Q8 ====================
+#include <stdio.h>
+double power_cal(int target ,int power);
+
+int main(int argc, const char * argv[]) {
+    int target = 16, power = -2;
+    printf("result: %f\n", power_cal(target, power));
+    
+    return 0;
+}
+
+double power_cal(int target ,int power){
+    double result = 1;
+    if (target == 0){
+        return 0;
+    }
+    if (power == 0){
+        return 1;
+    }
+    if (power > 0){
+        while (power > 0) {
+            result *= target;
+            power -= 1;
+        }
+    }
+    else{
+        while (power < 0) {
+            result /= target;
+            power += 1;
+        }
+    }
+    return result;
+}
+
+#Q9 ====================
+#include <stdio.h>
+double power_cal(double target ,int power);
+
+int main(int argc, const char * argv[]) {
+    int power = -3;
+    double target = 16, result;
+    
+    result = power_cal(target, power);
+    printf("result: %f\n", result);
+    
+    return 0;
+}
+
+double power_cal(double target ,int power){
+    if (target == 0){
+        return 0;
+    }
+    if (power == 0){
+        return 1;
+    }
+    if (power > 0){
+        return power_cal(target, power - 1) * target;
+    }
+    else{
+        return (power_cal(target, power + 1) / target);
+    }
+}
+
+
+
