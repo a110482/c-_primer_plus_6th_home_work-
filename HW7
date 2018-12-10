@@ -1,0 +1,28 @@
+Q1==============
+#include <stdio.h>
+
+int main(int argc, const char * argv[]) {
+    printf("start:");
+    int space_count = 0,
+    change_line_count = 0,
+    other_count = 0;
+    char ch;
+    
+    while ((ch = getchar()) != '#') {
+        switch (ch) {
+            case '\n':
+                space_count += 1;
+                break;
+            case ' ':
+                change_line_count += 1;
+                break;
+            default:
+                other_count += 1;
+                break;
+        }
+    }
+    printf("sapce: %d, change:%d, other:%d\n", space_count, change_line_count, other_count);
+
+    return 0;
+}
+
