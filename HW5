@@ -1,0 +1,42 @@
+// ========== Chapter5 ===========
+// #Q1 ==============================
+int main(int argc, const char * argv[]) {
+    const int min_rate = 60;
+    int input_min;
+    while (1) {
+        printf("please type a Int:");
+        scanf("%d", &input_min);
+        if (input_min <= 0){
+            break;
+        }
+        printf("%d min = %d:%d\n", input_min, input_min/min_rate, input_min%min_rate);
+    }
+    printf("Good bye!!!\n");
+    return 0;
+}
+
+// #Q5 ==============================
+int addemup(int input) {
+    int result = 0;
+    int count = 0;
+    while (count < input) {
+        count += 1;
+        result += count;
+    }
+    return result;
+}
+
+int main(int argc, const char * argv[]) {
+    int input, result;
+    while (1) {
+        printf("please enter a int :");
+        scanf("%d", &input);
+        if (input <= 0){
+            break;
+        }
+        result = addemup(input);
+        printf("result: %d\n", result);
+    }
+    printf("Good bye!!!\n");
+    return 0;
+}
