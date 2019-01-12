@@ -1,1 +1,28 @@
+#Q3 ===================
+//輸入陣列找最大值
+#include <stdio.h>
+int max(int *ptr, int lengh);
+
+int main(int argc, const char * argv[]) {
+    
+    int array[5] = {4,3,8,7,5};
+    int max_num = max(array, 5);
+    printf("%d\n", max_num);
+    
+    return 0;
+}
+
+int max(int *ptr, int lengh){
+    int result = 0;
+    for (int index=0; index < lengh; index++){
+        if (index == 0 || ptr[index] > result){
+            result = ptr[index];
+        }
+    }
+    return result;
+}
+
+#Q6 ===================
+反轉陣列
+
 
