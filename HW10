@@ -55,5 +55,46 @@ void inverse(int *ptr, int length){
     }
 }
 
+#Q9 ===================
+複製並列印陣列
 
+#include <stdio.h>
+#define LENGTH_LV_1 3
+#define LENGTH_LV_2 5
+
+void copy_array(int length_lv_1, int length_lv_2, double origin[length_lv_1][length_lv_2], double target[length_lv_1][length_lv_2]);
+void print_array(int length_lv_1, int length_lv_2, double array[length_lv_1][length_lv_2]);
+
+int main(int argc, const char * argv[]) {
+    double origin[LENGTH_LV_1][LENGTH_LV_2] = {
+        {1.1, 1.2, 1.3, 1.4, 1.5},
+        {2.1, 2.2, 2.3, 2.4, 2.5},
+        {3.1, 3.2, 3.3, 3.4, 3.5}
+    };
+    
+    double target[LENGTH_LV_1][LENGTH_LV_2] = {{0.0}};
+    copy_array(LENGTH_LV_1, LENGTH_LV_2, origin, target);
+    print_array(3, 5, target);
+    return 0;
+}
+
+void copy_array(int length_lv_1, int length_lv_2,
+                double origin[length_lv_1][length_lv_2],
+                double target[length_lv_1][length_lv_2]){
+    for (int i = 0; i < length_lv_1; i++){
+        for (int c = 0; c < length_lv_2; c++){
+            target[i][c] = origin[i][c];
+        }
+    }
+}
+
+void print_array(int length_lv_1, int length_lv_2, double array[length_lv_1][length_lv_2]){
+    for (int i = 0; i < length_lv_1; i++){
+        for (int c = 0; c < length_lv_2; c++){
+            double res = array[i][c];
+            printf("%.1f ", res);
+        }
+        printf("\n");
+    }
+}
 
