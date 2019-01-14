@@ -98,3 +98,38 @@ void print_array(int length_lv_1, int length_lv_2, double array[length_lv_1][len
     }
 }
 
+#10 ===================
+把前兩個陣列的元素加總到第三個陣列
+並寫測試函數
+
+#include <stdio.h>
+#define ARRAY_LEN 4
+void sum_array(int len, int array_1[len], int array_2[len], int result[len]);
+void simple_test(int len, int array_1[len], int array_2[len], int result[len]);
+
+int main(int argc, const char * argv[]) {
+    int array_1[ARRAY_LEN] = {1,2,3,4}, array_2[ARRAY_LEN] = {5,6,7,8};
+    int result[ARRAY_LEN] = {0};
+    sum_array(ARRAY_LEN, array_1, array_2, result);
+    simple_test(ARRAY_LEN, array_1, array_2, result);
+    for(int i=0; i<ARRAY_LEN; i++){
+        printf("%d\n", result[i]);
+    }
+    return 0;
+}
+
+void sum_array(int len, int array_1[len], int array_2[len], int result[len]){
+    for(int i=0; i<len; i++){
+        result[i] = array_1[i] + array_2[i];
+    }
+}
+
+void simple_test(int len, int array_1[len], int array_2[len], int result[len]){
+    for(int i=0; i<len; i++){
+        if (result[i] != array_1[i] + array_2[i]){
+            printf("error");
+            return;
+        }
+    }
+    printf("pass\n");
+}
