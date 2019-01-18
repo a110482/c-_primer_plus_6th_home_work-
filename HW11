@@ -43,3 +43,32 @@ char* my_str_cpy(char *target,const char *source, int len){
     }
     return target;
 }
+
+
+// --------Q8--------
+// 如果字串二包含在字一串內 就傳回指標位置 否則傳回空指標
+#include <stdio.h>
+#include <string.h>
+
+char* string_in(char*, char*);
+
+int main(int argc, const char * argv[]) {
+    char c[30] = "abcdeefghijklmnopqrstuv";
+    char cc[10] = "gh";
+    
+    char *p;
+    p = string_in(c, cc);
+    
+    printf("%s\n", p);
+    return 0;
+}
+
+char* string_in(char *str_1, char *str_2){
+    unsigned long len;
+    for(len=0; len<strlen(str_1); len++){
+        if(str_1[len] == str_2[0] && strncmp(str_1+len, str_2, strlen(str_2)) == 0){
+            return str_1+len;
+        }
+    }
+    return NULL;
+}
