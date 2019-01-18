@@ -1,0 +1,23 @@
+// ----------Q6-------------
+// 判斷字元有沒有在字串裡
+#include <stdio.h>
+#include "string.h"
+
+int is_within(char target, char *array);
+int main() {
+    char ch[30] = "qazwsxedcrfvtgbyhn";
+    char tar = 'k';
+    printf("%d\n", is_within(tar, ch));
+
+    return 0;
+}
+
+int is_within(char target, char *array){
+    size_t len = strlen(array);
+    for(size_t i=0; i<len;i++){
+        if (target == array[i]){
+            return 1;
+        }
+    }
+    return 0;
+}
