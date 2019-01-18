@@ -21,3 +21,25 @@ int is_within(char target, char *array){
     }
     return 0;
 }
+
+
+// ----------Q7-------------
+// 實作自己的strncpy
+#include <stdio.h>
+#include "string.h"
+
+char* my_str_cpy(char *target,const char *source, int len);
+int main() {
+    char a[10] = "ssssdddd";
+    char b[10] = "a";
+    my_str_cpy(b, a, 5);
+    printf("%s\n", b);
+    return 0;
+}
+
+char* my_str_cpy(char *target,const char *source, int len){
+    for (int i=0; i<len;i++){
+        target[i] = source[i];
+    }
+    return target;
+}
