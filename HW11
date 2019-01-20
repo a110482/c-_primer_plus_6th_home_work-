@@ -122,3 +122,79 @@ void remove_empty(char *cha){
 }
 
 
+// --------Q16--------
+// 可輸入資料 並辨識命令
+// -f 檔案路徑
+// -u 轉大寫
+// -l 轉小寫
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
+#define LEN 50
+
+void lower(char *cha_ptr);
+void uper(char *cha_ptr);
+
+
+int main(int argc, const char * argv[]) {
+    FILE *fp = NULL;   // 檔案指標
+    char buffer[LEN] ={'\0'};     // 文檔緩衝
+    bool need_uper = false;
+    bool need_lower = false;
+    
+    // 解析命令
+    for (int i = 1; i< argc; i++){
+        if(strcmp(argv[i], "-u") == 0){
+            need_uper = true;
+        }
+        else if (strcmp(argv[i], "-l") == 0){
+            need_lower = true;
+        }
+        else if (strcmp(argv[i], "-f") == 0){
+            i++;
+            fp = fopen(argv[i], "r");
+            if(fp == NULL){
+                printf("路徑不存在: %s\n", argv[i]);
+                return 0;
+            }
+        }
+        else{
+            printf("無法辨識的命令: %s\n", argv[i]);
+            return 0;
+        }
+    }
+    
+    
+    while (fgets(buffer, LEN, fp) != NULL){
+        if(need_uper == true){
+            uper(buffer);
+        }
+        else if (need_lower == true){
+            lower(buffer);
+        }
+        printf("%s", buffer);
+    }
+    
+    fclose(fp);
+    printf("\n");
+    return 0;
+}
+
+void lower(char *cha_ptr){
+    // 65~90
+    for (int i = 0; i<LEN; i++){
+        if (cha_ptr[i] >= 65 || cha_ptr[i] <= 90){
+            cha_ptr[i] = tolower(*(cha_ptr+i));
+        }
+    }
+}
+void uper(char *cha_ptr){
+    // 97~122
+    for (int i = 0; i<LEN; i++){
+        if (cha_ptr[i] >= 97 || cha_ptr[i] <= 122){
+            cha_ptr[i] = toupper(*(cha_ptr+i));
+        }
+    }
+}
