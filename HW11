@@ -72,3 +72,53 @@ char* string_in(char *str_1, char *str_2){
     }
     return NULL;
 }
+
+
+// --------Q10--------
+// 從字串中刪除空白字元的函數
+// 使用迴圈讀取資料 直到空白行出現
+// 印出之前的資料
+#include <stdio.h>
+#include <string.h>
+#define LEN 5
+
+void remove_empty(char *cha);
+
+int main(int argc, const char * argv[]) {
+    char cha_buff[LEN] = {'\0'};
+    
+    printf("input: ");
+    while(fgets(cha_buff, LEN, stdin) != NULL){
+        remove_empty(cha_buff);
+        printf("%s", cha_buff);
+        
+        // 空白行退出
+        if (cha_buff[0] == '\n'){
+            break;
+        }
+        // 如果此次輸入含有空白或換行 開始下次輸入
+        for(int cha_index = 0; cha_index < LEN; cha_index++){
+            if (cha_buff[cha_index] == '\n'){
+                printf("input: ");
+                break;
+            }
+        }
+        
+    }
+    
+    return 0;
+}
+
+void remove_empty(char *cha){
+    for(int cha_index = 0; cha_index < LEN; cha_index++){
+        if (cha[cha_index] == ' '){
+            // 這之後全部往前移
+            for(int move_index = cha_index; move_index < LEN - 1; move_index++){
+                cha[move_index] = *(cha+move_index+1);
+            }
+            cha_index--;
+        }
+    }
+}
+
+
