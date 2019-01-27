@@ -136,6 +136,60 @@ int count(){
     return count;
 }
 
+// ========== Q5 ========
+// 建立亂數序列 然後排序
+#include <stdio.h>
+#include <stdlib.h>
+#define LIS_LEN 100
+
+void swap(int *ptr_a, int *ptr_b);  // 交換數值
+void show_lis(int len, int lis[len]);   // 列印陣列
+void sort(int len, int lis[len]);   // 排序
+int main(int argc, const char * argv[]) {
+    // 建立亂數序列
+    int lis[LIS_LEN];
+    for(int i = 0; i < LIS_LEN; i++){
+        int a = rand() % 100;
+        lis[i] = a;
+    }
+    show_lis(LIS_LEN, lis);
+    sort(LIS_LEN, lis);
+    show_lis(LIS_LEN, lis);
+    return 0;
+}
+
+void swap(int *ptr_a, int *ptr_b){
+    int tmp = *ptr_a;
+    *ptr_a = *ptr_b;
+    *ptr_b = tmp;
+}
+
+void show_lis(int len, int lis[len]){
+    for(int i = 0; i<len; i++){
+        printf("%d  ", lis[i]);
+    }
+    printf("\n");
+}
+
+void sort(int len, int lis[len]){
+    // 記錄交換進度 和設定遞迴終止條件
+    static int n = 0;
+    if (n >= len - 1){
+        return;
+    }
+    // 找最大值
+    int max_index = n;
+    for (int i = n; i<len; i++){
+        if (lis[i] > lis[max_index]){
+            max_index = i;
+        }
+    }
+    if(max_index != n){
+        swap(&lis[n], &lis[max_index]);
+    }
+    n += 1;
+    sort(len, lis);
+}
 
 
 
