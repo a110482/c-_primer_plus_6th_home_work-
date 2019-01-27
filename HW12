@@ -1,0 +1,65 @@
+// ========== Q1 =========
+// 計算耗油量 提供英制和公制兩種計算方式
+// 使用檔案變數
+
+// --- file: main ---
+#include <stdio.h>
+#include "pe12-2a.h"
+
+int main(int argc, const char * argv[]) {
+    int mode;
+    printf("輸入0進入公制，1進入美制: ");
+    scanf("%d", &mode);
+    while (mode >= 0) {
+        set_mode(mode);
+        get_info();
+        show_info();
+        printf("輸入0進入公制，1進入美制: ");
+        scanf("%d", &mode);
+    }
+    return 0;
+}
+
+// --- file: pe12-2a.h ---
+#ifndef pe12_2a_h
+#define pe12_2a_h
+
+void set_mode(int mode_input);
+void get_info(void);
+void show_info(void);
+
+#endif /* pe12_2a_h */
+
+// --- file: pe12-2a.c ---
+#include "pe12-2a.h"
+#include <stdio.h>
+
+static int distance = 0;
+static int used_oil = 0;
+static int mode;
+
+void set_mode(int mode_input){
+    mode = mode_input;
+}
+
+void get_info(void){
+    printf("輸入距離(%s): ", mode == 0 ? "公里":"英里");
+    scanf("%d", &distance);
+    printf("輸入耗油量(%s): ", mode == 0 ? "公升":"加侖");
+    scanf("%d", &used_oil);
+}
+
+void show_info(void){
+    if (mode == 0){
+        // 公制
+        printf("每100公里 消耗 %d 公升的汽油\n", 100*used_oil/distance);
+    }
+    else{
+        // 美制
+        printf("每加侖汽油 可跑 %d 英里\n", distance/used_oil);
+    }
+}
+
+
+
+
